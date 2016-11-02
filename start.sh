@@ -1,12 +1,12 @@
 #!/bin/bash
-# Add system user for Wordpress
 
-useradd -m -d /home/$USER -G root -s /bin/bash $USER \
-	&& usermod -a -G $USER $USER \
-	&& usermod -a -G sudo $USER
+# Create custom ssh_user with sudo privileges
+useradd -m -d /home/$SSH_USER -G root -s /bin/bash $SSH_USER \
+	&& usermod -a -G $SSH_USER $SSH_USER \
+	&& usermod -a -G sudo $SSH_USER
 
-# Set passwords for the ssh user and root
-echo "$USER:$SSH_PASSWORD" | chpasswd
+# Set passwords for the ssh_user and root
+echo "$SSH_USER:$SSH_PASSWORD" | chpasswd
 echo "root:$SSH_PASSWORD" | chpasswd
 
 
