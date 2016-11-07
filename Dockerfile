@@ -32,6 +32,6 @@ RUN chmod 755 /start.sh
 EXPOSE 22
 
 # volume for mysql database and wordpress install
-VOLUME ["/var/run/sshd"]
+#VOLUME ["/var/run/sshd"]
 
 CMD ["/bin/bash", "/start.sh"]
