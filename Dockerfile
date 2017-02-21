@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Legendary Hosting <mail@legendary-server.de>
+MAINTAINER Prime-Host <info@nordloh-webdesign.de>
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
