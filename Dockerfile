@@ -34,4 +34,4 @@ EXPOSE 22
 # volume for mysql database and wordpress install
 #VOLUME ["/var/run/sshd"]
 
-CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/bash", "/ubuntu-start.sh"]
