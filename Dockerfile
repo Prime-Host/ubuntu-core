@@ -24,8 +24,8 @@ RUN /usr/bin/easy_install supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
 # Initialization and Startup Script
-ADD ./start.sh /start.sh
-RUN chmod 755 /start.sh
+ADD ./ubuntu-start.sh /ubuntu-start.sh
+RUN chmod 755 /ubutu-start.sh
 
 #NETWORK PORTS
 # private expose
