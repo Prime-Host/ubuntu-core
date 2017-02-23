@@ -27,11 +27,7 @@ ADD ./supervisord.conf /etc/supervisord.conf
 ADD ./ubuntu-start.sh /ubuntu-start.sh
 RUN chmod 755 /ubutu-start.sh
 
-#NETWORK PORTS
-# private expose
+# network ports
 EXPOSE 22
-
-# volume for mysql database and wordpress install
-#VOLUME ["/var/run/sshd"]
 
 CMD ["/bin/bash", "/ubuntu-start.sh"]
