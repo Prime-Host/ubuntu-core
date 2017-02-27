@@ -13,7 +13,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # Basic Requirements
-RUN apt-get -y install pwgen python-setuptools curl git nano vim sudo unzip openssh-server openssl
+RUN apt-get -y install pwgen python-setuptools curl git nano vim sudo unzip dos2unix openssh-server openssl
 
 # clean up unneeded packages
 RUN apt-get --purge autoremove -y
