@@ -25,7 +25,7 @@ ADD ./supervisord.conf /etc/supervisord.conf
 
 # Initialization and Startup Script
 ADD ./ubuntu-start.sh /ubuntu-start.sh
-RUN chmod 755 /ubutu-start.sh
+RUN chmod 755 /ubuntu-start.sh
 
 # network ports
 EXPOSE 22
