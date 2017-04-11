@@ -27,10 +27,10 @@ ADD ./supervisord.conf /etc/supervisord.conf
 RUN mkdir /root/container-scripts
 RUN mkdir /root/container-scripts/old
 RUN mkdir /root/container-scripts/active
-ADD ./ubuntu-start.sh /root/container-scripts/old/ubuntu-start.sh
-RUN chmod 755 /root/container-scripts/old/ubuntu-start.sh
+ADD ./ubuntu-start.sh /ubuntu-start.sh
+RUN chmod 755 /ubuntu-start.sh
 
 # network ports
 EXPOSE 22
 
-CMD ["/bin/bash", "/root/container-scripts/old/ubuntu-start.sh"]
+CMD ["/bin/bash", "/ubuntu-start.sh"]
