@@ -18,8 +18,8 @@ RUN apt-get -y install cron pwgen python-setuptools curl git nano vim sudo unzip
 # clean up unneeded packages
 RUN apt-get --purge autoremove -y
 
-# start sendmail
-RUN sendmailconfig
+# use default sendmail config
+RUN yes 'y' | sendmailconfig
 
 # Supervisor Config
 RUN /usr/bin/easy_install supervisor
