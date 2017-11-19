@@ -16,9 +16,10 @@ RUN apt-get -y upgrade
 RUN apt-get -y install cron pwgen python-setuptools curl git nano vim sudo unzip dos2unix openssh-server openssl sendmail
 
 # Install oh-my-zsh
-RUN ["apt-get", "update"]
-RUN ["apt-get", "install", "-y", "zsh"]
+RUN apt-get update
+RUN apt-get install -y zsh
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN su $PRIMEHOST_USER -c "wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true"
 
 # clean up unneeded packages
 RUN apt-get --purge autoremove -y
