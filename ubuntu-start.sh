@@ -9,6 +9,8 @@ useradd -m -d /home/$PRIMEHOST_USER -G root -s /bin/bash $PRIMEHOST_USER \
 echo "$PRIMEHOST_USER:$PRIMEHOST_PASSWORD" | chpasswd
 echo "root:$PRIMEHOST_PASSWORD" | chpasswd
 
+# Change default shell to zsh
+sed -i s/bash/zsh/g /etc/passwd
 
 # start all the services
 /usr/local/bin/supervisord -n -c /etc/supervisord.conf
