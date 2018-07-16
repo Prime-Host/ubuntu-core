@@ -16,9 +16,11 @@ RUN apt-get -y upgrade
 RUN apt-get -y install cron pwgen python-setuptools curl git nano vim sudo unzip dos2unix openssh-server openssl sendmail
 
 # Install oh-my-zsh
-RUN apt-get update
 RUN apt-get install -y zsh
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN sed -i s:/root/.oh-my-zsh:\$HOME/.oh-my-zsh:g /root/.zshrc && sed -i 's/robbyrussell/bira/g' /root/.zshrc && echo "DISABLE_UPDATE_PROMPT=true" >> /root/.zshrc
+RUN cp -r /root/.oh-my-zsh /etc/skel/
+RUN cp /root/.zshrc /etc/skel
 
 # clean up unneeded packages
 RUN apt-get --purge autoremove -y
