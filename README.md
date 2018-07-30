@@ -5,6 +5,9 @@
 
 Ubuntu 16.04 LTS server with ssh.
 
+**Connect to it from master:**
+docker exec -it container-name zsh
+
 ## Features:
 - **production ready** (already in use for live containers)
 - **ssh** (with oh my zsh custom theme)
