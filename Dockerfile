@@ -9,10 +9,7 @@ MAINTAINER Prime-Host <info@nordloh-webdesign.de>
 # Let the conatiner know that there is no tty
 #ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get -y upgrade
-
-# Basic Requirements
-RUN apt-get -y install cron pwgen python-setuptools curl git nano vim sudo unzip dos2unix openssh-server openssl sendmail zsh
+RUN apt-get update && apt-get -y install cron python-setuptools curl git nano vim sudo unzip openssh-server openssl sendmail zsh
 
 # Install oh-my-zsh
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
@@ -29,13 +26,11 @@ RUN yes 'y' | sendmailconfig
 # Supervisor Config
 RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
-ADD ./supervisord.conf /etc/supervisord.conf
+COPY ./supervisord.conf /etc/supervisord.conf
 
 # Initialization and Startup Script
-RUN mkdir /root/container-scripts
-RUN mkdir /root/container-scripts/prime-host
-RUN mkdir /root/container-scripts/custom
-ADD ./ubuntu-start.sh /root/container-scripts/prime-host/ubuntu-start.sh
+RUN mkdir /root/container-scripts /root/container-scripts/prime-host /root/container-scripts/custom
+COPY ./ubuntu-start.sh /root/container-scripts/prime-host/ubuntu-start.sh
 RUN chmod 755 /root/container-scripts/prime-host/ubuntu-start.sh
 
 # network ports
