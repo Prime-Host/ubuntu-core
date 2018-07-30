@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Prime-Host <info@nordloh-webdesign.de>
+MAINTAINER Prime-Host <info@prime-host.de>
 
 # Keep upstart from complaining
 #RUN dpkg-divert --local --rename --add /sbin/initctl
@@ -9,7 +9,10 @@ MAINTAINER Prime-Host <info@nordloh-webdesign.de>
 # Let the conatiner know that there is no tty
 #ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get -y install cron python-setuptools curl git nano vim sudo unzip openssh-server openssl sendmail zsh
+# Install all packages
+RUN apt-get update && \
+apt-get install -y --no-install-recommends cron python-setuptools curl git nano vim sudo unzip openssh-server openssl sendmail zsh && \
+rm -rf /var/lib/apt/lists/*
 
 # Install oh-my-zsh
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
@@ -17,15 +20,11 @@ RUN sed -i s:/root/.oh-my-zsh:\$HOME/.oh-my-zsh:g /root/.zshrc && sed -i 's/robb
 RUN cp -r /root/.oh-my-zsh /etc/skel/
 RUN cp /root/.zshrc /etc/skel
 
-# clean up unneeded packages
-RUN apt-get --purge autoremove -y
-
 # use default sendmail config
 RUN yes 'y' | sendmailconfig
 
 # Supervisor Config
-RUN /usr/bin/easy_install supervisor
-RUN /usr/bin/easy_install supervisor-stdout
+RUN /usr/bin/easy_install supervisor && /usr/bin/easy_install supervisor-stdout
 COPY ./supervisord.conf /etc/supervisord.conf
 
 # Initialization and Startup Script
