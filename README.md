@@ -12,6 +12,8 @@ docker exec -it container-name zsh
 
 ## Features:
 - **production ready** (already in use for live containers)
+- **low CPU consumption** (uses 0.1% of one CPU core)
+- **uses only 16 MB of RAM** (with active SSH / ZSH session)
 - **ssh** (with oh my zsh custom theme)
 - **custom user** (your own user with sudo rigths)
 - **cron** (you can use crontab -e)
