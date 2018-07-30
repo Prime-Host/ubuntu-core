@@ -8,7 +8,7 @@ Ubuntu 16.04 LTS server with ssh.
 ## Features:
 - **production ready** (already in use for live containers)
 - **ssh** (with oh my zsh custom theme)
-- **custom user** (with sudo rights)
+- **custom user** (your own user with sudo)
 - **cron** (you can use crontab -e)
 - **git** (git client installed)
 - **sendmail** (you can send emails from this container)
