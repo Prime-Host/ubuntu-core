@@ -18,4 +18,5 @@ docker exec -it container-name zsh
 - **git** (git client installed)
 - **sendmail** (you can send emails from this container)
 - **home volume** (on master "/var/docker-data/container/")
-- **more packages** (curl, vim, nano, unzip)
+- **vim** (with utf8 setting)
+- **more packages** (curl, wget, nano, unzip)
