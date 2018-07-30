@@ -6,7 +6,7 @@
 Ubuntu 16.04 LTS server with ssh.
 
 ## Features:
-- **prpduction ready** (already in use for live containers)
+- **production ready** (already in use for live containers)
 - **ssh** (with oh my zsh custom theme)
 - **custom user** (with sudo rights)
 - **cron** (you can use crontab -e)
