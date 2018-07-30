@@ -12,4 +12,5 @@ Ubuntu 16.04 LTS server with ssh.
 - **cron** (you can use crontab -e)
 - **git** (git client installed)
 - **sendmail** (you can send emails from this container)
+- **home volume** (on master "/var/docker-data/container/")
 - **more packages** (curl, vim, nano, unzip)
