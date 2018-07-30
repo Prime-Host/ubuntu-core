@@ -11,8 +11,7 @@ MAINTAINER Prime-Host <info@prime-host.de>
 
 # Install all packages
 RUN apt-get update && \
-apt-get install -y --no-install-recommends cron python-setuptools curl git nano vim sudo unzip openssh-server openssl sendmail zsh && \
-rm -rf /var/lib/apt/lists/*
+apt-get install -y cron python-setuptools curl git nano vim sudo unzip openssh-server openssl sendmail zsh && \
 
 # Install oh-my-zsh
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
