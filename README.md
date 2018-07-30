@@ -5,6 +5,6 @@
 
 Ubuntu 16.04 LTS server with ssh.
 
-# Features:
+## Features:
 - **ssh** (with oh my zsh custom theme)
 - **custom user** (with sudo rights)
