@@ -1,18 +1,11 @@
 FROM ubuntu:16.04
 MAINTAINER Prime-Host <info@prime-host.de>
 
-# Let the conatiner know that there is no tty
-#ENV DEBIAN_FRONTEND noninteractive
-
-# create sshd folder
-RUN mkdir /var/run/sshd
-
-# Install all packages
-RUN apt-get update \
- && apt-get install -y cron python-setuptools wget curl git nano vim sudo unzip openssh-server openssl sendmail zsh 
-
 # Install oh-my-zsh, sendmail and supervisor | custom config for oh-my-zsh, vim and new created users
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
+RUN mkdir /var/run/sshd \
+ && apt-get update \
+ && apt-get install -y cron python-setuptools wget curl git nano vim sudo unzip openssh-server openssl sendmail zsh \
+ && wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
  && cp /root/.oh-my-zsh/themes/bira.zsh-theme /root/.oh-my-zsh/themes/prime-host.zsh-theme \
  && sed -i 's/%m%/%M%/g' /root/.oh-my-zsh/themes/prime-host.zsh-theme \
  && sed -i s:/root/.oh-my-zsh:\$HOME/.oh-my-zsh:g /root/.zshrc \
@@ -24,15 +17,14 @@ RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -
  && cp /root/.zshrc /etc/skel/. \
  && cp /root/.vimrc /etc/skel/. \
  && yes 'y' | sendmailconfig \
- && /usr/bin/easy_install supervisor && /usr/bin/easy_install supervisor-stdout
+ && /usr/bin/easy_install supervisor && /usr/bin/easy_install supervisor-stdout \
+ && mkdir /root/container-scripts /root/container-scripts/prime-host /root/container-scripts/custom
 
 # Supervisor Config
 COPY ./supervisord.conf /etc/supervisord.conf
 
 # Initialization and Startup Script
-RUN mkdir /root/container-scripts /root/container-scripts/prime-host /root/container-scripts/custom
 COPY ./ubuntu-start.sh /root/container-scripts/prime-host/ubuntu-start.sh
-RUN chmod 755 /root/container-scripts/prime-host/ubuntu-start.sh
 
 # network ports
 EXPOSE 22
