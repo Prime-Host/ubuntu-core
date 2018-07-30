@@ -6,10 +6,10 @@
 Ubuntu 16.04 LTS server with ssh.
 
 ## Features:
-- **prpduction ready** (Already in use for live containers)
+- **prpduction ready** (already in use for live containers)
 - **ssh** (with oh my zsh custom theme)
 - **custom user** (with sudo rights)
 - **cron** (you can use crontab -e)
 - **git** (git client installed)
-- **sendmail** (
+- **sendmail** (you can send emails from this container)
 - **more packages** (curl, vim, nano, unzip)
