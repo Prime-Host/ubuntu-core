@@ -7,7 +7,7 @@ RUN mkdir /var/run/sshd \
  && apt-get install -y cron python-setuptools wget curl git nano vim sudo unzip openssh-server openssl sendmail zsh \
  && wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
  && cp /root/.oh-my-zsh/themes/bira.zsh-theme /root/.oh-my-zsh/themes/prime-host.zsh-theme \
- && sed -i 's/%m%/%M%/g' /root/.oh-my-zsh/themes/prime-host.zsh-theme \
+ && sed -i 's/%m/%M/g' /root/.oh-my-zsh/themes/prime-host.zsh-theme \
  && sed -i s:/root/.oh-my-zsh:\$HOME/.oh-my-zsh:g /root/.zshrc \
  && sed -i 's/robbyrussell/prime-host/g' /root/.zshrc \
  && echo "DISABLE_UPDATE_PROMPT=true" >> /root/.zshrc \
