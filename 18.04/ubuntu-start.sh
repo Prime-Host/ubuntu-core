@@ -10,4 +10,4 @@ echo "$PRIMEHOST_USER:$PRIMEHOST_PASSWORD" | chpasswd
 echo "root:$PRIMEHOST_PASSWORD" | chpasswd
 
 # start all the services
-/usr/local/bin/supervisord -n -c /etc/supervisord.conf
+/usr/bin/supervisord

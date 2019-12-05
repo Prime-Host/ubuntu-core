@@ -1,10 +1,10 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER Prime-Host <info@prime-host.de>
 
 # Install oh-my-zsh, sendmail and supervisor | custom config for oh-my-zsh, vim and new created users
 RUN mkdir /var/run/sshd \
  && apt-get update \
- && apt-get install -y cron python-setuptools wget curl git nano vim sudo unzip openssh-server openssl sendmail zsh \
+ && apt-get install -y cron python-setuptools supervisor wget curl git nano vim sudo unzip openssh-server openssl sendmail zsh \
  && wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
  && cp /root/.oh-my-zsh/themes/bira.zsh-theme /root/.oh-my-zsh/themes/prime-host.zsh-theme \
  && sed -i 's/%m/%M/g' /root/.oh-my-zsh/themes/prime-host.zsh-theme \
@@ -16,17 +16,15 @@ RUN mkdir /var/run/sshd \
  && cp -r /root/.oh-my-zsh /etc/skel/. \
  && cp /root/.zshrc /etc/skel/. \
  && cp /root/.vimrc /etc/skel/. \
- && yes 'y' | sendmailconfig \
- && /usr/bin/easy_install supervisor && /usr/bin/easy_install supervisor-stdout \
- && mkdir /root/container-scripts /root/container-scripts/prime-host /root/container-scripts/custom
+ && yes 'y' | sendmailconfig 
 
 # Supervisor Config
-COPY ./supervisord.conf /etc/supervisord.conf
+COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Initialization and Startup Script
-COPY ./ubuntu-start.sh /root/container-scripts/prime-host/ubuntu-start.sh
+COPY ./ubuntu-start.sh /bin/prime-host/ubuntu-start.sh
 
 # network ports
 EXPOSE 22
 
-CMD ["/bin/bash", "/root/container-scripts/prime-host/ubuntu-start.sh"]
+CMD ["/bin/bash", "/bin/prime-host/ubuntu-start.sh"]
