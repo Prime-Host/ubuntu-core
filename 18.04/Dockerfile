@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER Prime-Host <info@prime-host.de>
 
+ARG DEBIAN_FRONTEND=noninteractive
 # Install oh-my-zsh, sendmail and supervisor | custom config for oh-my-zsh, vim and new created users
 RUN mkdir /var/run/sshd \
  && apt-get update \
